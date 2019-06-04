@@ -1,0 +1,9 @@
+language: java
+install: true
+
+jdk:
+  - oraclejdk8
+
+script:
+  - ./gradlew wrapper --gradle-version=5.4.1 --distribution-type=bin
+  - ./gradlew test
