@@ -1,5 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31"
+    }
+}
+
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.21'
 }
 
 group 'org.YKPO_2'
@@ -12,5 +23,29 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.3.31"
+    compile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/java'
+    test.kotlin.srcDirs += 'src/test/kotlin'
+}
+
+
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
 }
